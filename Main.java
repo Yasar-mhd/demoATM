@@ -10,8 +10,9 @@ public class Main {
         int userPin;
 
         while(attempts>0){
-            System.out.print("Enter your pin : ");
-            userPin = sc.nextInt();
+            System.out.print("Enter your pin : "); 
+            userPin = sc.nextInt();     // Pin authentication
+           
             if(userPin == PIN){
                 authenticated = true;
                 break;
@@ -19,13 +20,13 @@ public class Main {
             else{
                 attempts--;
                 if(attempts > 0){
-                    System.out.println("Incorrect pin. "+attempts+" attempts left");
+                    System.out.println("Incorrect pin. "+attempts+" attempts left");            // Incorrect pin message
                 }
             }
         }
 
         if(!authenticated){
-            System.out.println("Too many attempts. Card is blocked !!");
+            System.out.println("Too many attempts. Card is blocked !!");        // Block card message
             sc.close();
             return;
         }
@@ -33,18 +34,18 @@ public class Main {
         boolean willing = true;
 
         while (willing) {
-            System.out.println("-----Banking System-----");
+            System.out.println("-----Banking System-----");         //  Menu display
             System.out.println("1. Deposit");
             System.out.println("2. Withdraw");
             System.out.println("3. Balance Enquiry");
             System.out.println("4. Exit");
-            System.out.print("Enter your choice: ");
-
+            
+            System.out.print("Enter your choice: ");         // User choice input
             int choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the amount to deposit: ");
+                    System.out.print("Enter the amount to deposit: ");        // Deposit amount input
                     long depAmount = sc.nextLong();
                     if (depAmount > 0) {
                         deposit(depAmount);
@@ -54,7 +55,7 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Enter the amount to withdraw: ");
+                    System.out.print("Enter the amount to withdraw: ");      // Withdraw amount input
                     long withDraw = sc.nextLong();
                     if (withDraw > 0) {
                         withdraw(withDraw);
@@ -64,16 +65,16 @@ public class Main {
                     break;
 
                 case 3:
-                    showBalance();
+                    showBalance();      // Show balance
                     break;
 
                 case 4:
-                    goodbye();
+                    goodbye();       // Exit message
                     willing = false;
                     break;
 
                 default:
-                    invalid();
+                    invalid();       // Invalid choice message
                     break;
             }
 
@@ -81,7 +82,7 @@ public class Main {
                 break;
             }
 
-            System.out.print("Do you want to process again ?(y/n): ");
+            System.out.print("Do you want to process again ?(y/n): ");       // Continue prompt
             char ans = sc.next().charAt(0);
             if (ans == 'n' || ans == 'N') {
                 goodbye();
@@ -93,32 +94,32 @@ public class Main {
 
     public static void deposit(long amount) {
         balance += amount;
-        System.out.println("Amount deposited successfully");
+        System.out.println("Amount deposited successfully");        // Deposit success message
     }
 
     public static void withdraw(long amount) {
         if(amount<=50000) {
             if (balance >= amount) {
                 balance -= amount;
-                System.out.println("Amount withdrawn successfully");
+                System.out.println("Amount withdrawn successfully");        // Withdraw success message
             } else {
-                System.out.println("Insufficient Balance !!");
+                System.out.println("Insufficient Balance !!");      // Insufficient balance message
             }
         }
         else{
-            System.out.println("The maximum withdrawal amount is $50000");
+            System.out.println("The maximum withdrawal amount is $50000");        // Exceed max withdrawal message
         }
     }
 
     public static void showBalance() {
-        System.out.println("Your current balance is $" + balance);
+        System.out.println("Your current balance is $" + balance);        // Display balance
     }
 
     public static void goodbye(){
-        System.out.println("Thank you !!");
+        System.out.println("Thank you !!");        //Exit message
     }
 
     public static void invalid(){
-        System.out.println("Invalid amount.\nOperation cancelled!!");
+        System.out.println("Invalid amount.\nOperation cancelled!!");        // Invalid amount message
     }
 }
