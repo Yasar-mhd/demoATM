@@ -4,6 +4,8 @@ public class Main {
     static long balance = 0;
     static final int PIN = 2402;
     public static void main(String[] args) {
+        Account acc = new Account("Yasar",5000,2402);
+        System.out.println(acc.name);
         Scanner sc = new Scanner(System.in);
         int attempts = 3;
         boolean authenticated = false;
